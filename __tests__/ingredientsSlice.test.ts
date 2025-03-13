@@ -1,12 +1,10 @@
-import '@testing-library/jest-dom';
-// ingredientsSlice.test.ts
 import ingredientsReducer, {
   IngredientsState,
   getIngredientsThunk
-} from '../slices/ingredientsSlice';
-import { TIngredient } from '../../utils/types';
+} from '../src/services/slices/ingredientsSlice';
+import { TIngredient } from '../src/utils/types';
 
-const mockIngredients: Omit<TIngredient, '__v'>[] = [
+const mockIngredients: TIngredient[] = [
   {
     _id: '643d69a5c3f7b9001cfa0940',
     name: 'Говяжий метеорит (отбивная)',
@@ -22,20 +20,20 @@ const mockIngredients: Omit<TIngredient, '__v'>[] = [
   }
 ];
 
-describe('ingredients reducer', () => {
+describe('тест ingredientsSlice', () => {
   const initialState: IngredientsState = {
     ingredients: [],
     isIngredientsLoading: false,
     error: null
   };
 
-  it('should handle initial state', () => {
+  it('проверка initialState', () => {
     expect(ingredientsReducer(undefined, { type: 'unknown' })).toEqual(
       initialState
     );
   });
 
-  it('should handle getIngredientsThunk.pending', () => {
+  it('изменение состояния при pending', () => {
     const action = {
       type: getIngredientsThunk.pending.type
     };
@@ -49,7 +47,7 @@ describe('ingredients reducer', () => {
     });
   });
 
-  it('should handle getIngredientsThunk.fulfilled', () => {
+  it('изменение состояния при fulfilled', () => {
     const action = {
       type: getIngredientsThunk.fulfilled.type,
       payload: mockIngredients
@@ -67,7 +65,7 @@ describe('ingredients reducer', () => {
     });
   });
 
-  it('should handle getIngredientsThunk.rejected with error message', () => {
+  it('изменение состояния при rejected с сообщением ошибки', () => {
     const errorMessage = 'Network Error';
     const action = {
       type: getIngredientsThunk.rejected.type,
@@ -86,7 +84,7 @@ describe('ingredients reducer', () => {
     });
   });
 
-  it('should handle getIngredientsThunk.rejected without error message', () => {
+  it('изменение состояния при rejected без сообщения ошибки', () => {
     const action = {
       type: getIngredientsThunk.rejected.type,
       error: {}

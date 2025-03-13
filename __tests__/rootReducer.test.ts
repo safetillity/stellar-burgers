@@ -1,12 +1,10 @@
-import '@testing-library/jest-dom';
-// store.test.ts
 import { UnknownAction } from '@reduxjs/toolkit';
-import { rootReducer } from '../store';
-import burgerConstructor from '../slices/burgerConstructorSlice';
-import feeds from '../slices/feedsSlice';
-import ingredients from '../slices/ingredientsSlice';
-import order from '../slices/orderSlice';
-import user from '../slices/userSlice';
+import { rootReducer } from '../src/services/store';
+import burgerConstructor from '../src/services/slices/burgerConstructorSlice';
+import feeds from '../src/services/slices/feedsSlice';
+import ingredients from '../src/services/slices/ingredientsSlice';
+import order from '../src/services/slices/orderSlice';
+import user from '../src/services/slices/userSlice';
 
 describe('тест инициализации rootReducer', () => {
   it('комбайнинг слайсов', () => {
